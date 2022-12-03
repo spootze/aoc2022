@@ -97,8 +97,8 @@ fn test_score_strategies() {
 }
 
 #[test]
-fn test_score_strategies2() {
+fn test_score_strategies_from_outcome() {
     let test_input = include_str!("../test.txt");
-    let score = score_strategies2(test_input);
+    let score = score_strategies_from_outcome(test_input);
     assert_eq!(score, 12);
 }
