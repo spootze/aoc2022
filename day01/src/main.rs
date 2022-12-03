@@ -9,14 +9,14 @@ fn main() {
 fn compute_calories_of_elves(input: &str, n: usize) -> u32 {
     let mut calories: Vec<u32> = input.split("\n\n").map(compute_calories_of_elf).collect();
     calories.sort_by(|a, b| b.cmp(a));
-    return calories[..n].iter().sum();
+    calories[..n].iter().sum()
 }
 
 fn compute_calories_of_elf(input: &str) -> u32 {
-    return input
+    input
         .split_terminator("\n")
         .map(|l| l.parse::<u32>().unwrap())
-        .sum();
+        .sum()
 }
 
 #[test]

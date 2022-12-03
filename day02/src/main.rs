@@ -9,7 +9,7 @@ fn main() {
 fn score_strategies(strategies: &str) -> i32 {
     strategies
         .split_terminator("\n")
-        .map(|l| (l.chars().nth(0).unwrap(), l.chars().nth(2).unwrap()))
+        .map(parse_line)
         .map(|(l, r)| score_strategy(l, r))
         .sum()
 }
@@ -17,11 +17,15 @@ fn score_strategies(strategies: &str) -> i32 {
 fn score_strategies_from_outcome(strategies: &str) -> i32 {
     strategies
         .split_terminator("\n")
-        .map(|l| (l.chars().nth(0).unwrap(), l.chars().nth(2).unwrap()))
+        .map(parse_line)
         .map(|(l, r)| (l, encode_outcome(r)))
         .map(|(l, r)| (l, determine_my_strategy(l, r)))
         .map(|(l, r)| score_strategy(l, r))
         .sum()
+}
+
+fn parse_line(line: &str) -> (char, char) {
+    (line.chars().nth(0).unwrap(), line.chars().nth(2).unwrap())
 }
 
 fn score_strategy(their_shape: char, my_shape: char) -> i32 {
