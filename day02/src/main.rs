@@ -25,7 +25,8 @@ fn score_strategies_from_outcome(strategies: &str) -> i32 {
 }
 
 fn parse_line(line: &str) -> (char, char) {
-    (line.chars().nth(0).unwrap(), line.chars().nth(2).unwrap())
+    let (l, r) = line.split_once(' ').unwrap();
+    (l.chars().next().unwrap(), r.chars().next().unwrap())
 }
 
 fn score_strategy(their_shape: char, my_shape: char) -> i32 {
@@ -35,17 +36,17 @@ fn score_strategy(their_shape: char, my_shape: char) -> i32 {
 
 fn score_outcome(outcome: Outcome) -> i32 {
     match outcome {
-        Outcome::WIN => 6,
-        Outcome::DRAW => 3,
-        Outcome::LOSS => 0,
+        Outcome::Win => 6,
+        Outcome::Draw => 3,
+        Outcome::Loss => 0,
     }
 }
 
 fn determine_outcome(their_shape: char, my_shape: char) -> Outcome {
     match (their_shape, my_shape) {
-        ('A', 'X') | ('B', 'Y') | ('C', 'Z') => Outcome::DRAW,
-        ('A', 'Y') | ('B', 'Z') | ('C', 'X') => Outcome::WIN,
-        ('A', 'Z') | ('B', 'X') | ('C', 'Y') => Outcome::LOSS,
+        ('A', 'X') | ('B', 'Y') | ('C', 'Z') => Outcome::Draw,
+        ('A', 'Y') | ('B', 'Z') | ('C', 'X') => Outcome::Win,
+        ('A', 'Z') | ('B', 'X') | ('C', 'Y') => Outcome::Loss,
         _ => panic!("Invalid shapes {their_shape}, {my_shape}"),
     }
 }
@@ -61,32 +62,32 @@ fn score_shape(shape: char) -> i32 {
 
 fn encode_outcome(outcome_str: char) -> Outcome {
     match outcome_str {
-        'X' => Outcome::LOSS,
-        'Y' => Outcome::DRAW,
-        'Z' => Outcome::WIN,
+        'X' => Outcome::Loss,
+        'Y' => Outcome::Draw,
+        'Z' => Outcome::Win,
         _ => panic!("Invalid desired outcome {outcome_str}"),
     }
 }
 
 fn determine_my_strategy(their_shape: char, desired_outcome: Outcome) -> char {
     match (their_shape, desired_outcome) {
-        ('A', Outcome::DRAW) | ('B', Outcome::LOSS) | ('C', Outcome::WIN) => 'X',
-        ('A', Outcome::WIN) | ('B', Outcome::DRAW) | ('C', Outcome::LOSS) => 'Y',
-        ('A', Outcome::LOSS) | ('B', Outcome::WIN) | ('C', Outcome::DRAW) => 'Z',
+        ('A', Outcome::Draw) | ('B', Outcome::Loss) | ('C', Outcome::Win) => 'X',
+        ('A', Outcome::Win) | ('B', Outcome::Draw) | ('C', Outcome::Loss) => 'Y',
+        ('A', Outcome::Loss) | ('B', Outcome::Win) | ('C', Outcome::Draw) => 'Z',
         _ => panic!("Invalid shape and outcome {their_shape}"),
     }
 }
 
 #[derive(PartialEq, Debug)]
 enum Outcome {
-    WIN,
-    LOSS,
-    DRAW,
+    Win,
+    Loss,
+    Draw,
 }
 
 #[test]
 fn test_determine_outcome() {
-    assert_eq!(determine_outcome('A', 'Y'), Outcome::WIN);
+    assert_eq!(determine_outcome('A', 'Y'), Outcome::Win);
 }
 
 #[test]

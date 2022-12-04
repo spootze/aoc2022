@@ -43,7 +43,7 @@ fn to_hash_set(items: &str) -> HashSet<char> {
 }
 
 fn find_common_items(left: HashSet<char>, right: HashSet<char>) -> HashSet<char> {
-    let mut _right = right.clone();
+    let mut _right = right;
     left.iter().filter_map(|v| _right.take(v)).collect()
 }
 

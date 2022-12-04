@@ -20,9 +20,9 @@ fn count_overlaps(assignments: &str, predicate: Predicate) -> usize {
 }
 
 fn parse_assignment(assignment: &str) -> Assignment {
-    let (x, y) = assignment.split_once(",").unwrap();
-    let (x_l, x_r) = x.split_once("-").unwrap();
-    let (y_l, y_r) = y.split_once("-").unwrap();
+    let (x, y) = assignment.split_once(',').unwrap();
+    let (x_l, x_r) = x.split_once('-').unwrap();
+    let (y_l, y_r) = y.split_once('-').unwrap();
     (
         x_l.parse::<u32>().unwrap(),
         x_r.parse::<u32>().unwrap(),
