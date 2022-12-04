@@ -13,7 +13,7 @@ fn main() {
 
 fn count_overlaps(assignments: &str, predicate: Predicate) -> usize {
     assignments
-        .split_terminator("\n")
+        .lines()
         .map(parse_assignment)
         .filter(|&a| predicate(a))
         .count()

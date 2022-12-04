@@ -8,7 +8,7 @@ fn main() {
 
 fn score_strategies(strategies: &str) -> i32 {
     strategies
-        .split_terminator("\n")
+        .lines()
         .map(parse_line)
         .map(|(l, r)| score_strategy(l, r))
         .sum()
@@ -16,7 +16,7 @@ fn score_strategies(strategies: &str) -> i32 {
 
 fn score_strategies_from_outcome(strategies: &str) -> i32 {
     strategies
-        .split_terminator("\n")
+        .lines()
         .map(parse_line)
         .map(|(l, r)| (l, encode_outcome(r)))
         .map(|(l, r)| (l, determine_my_strategy(l, r)))

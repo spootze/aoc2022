@@ -11,7 +11,7 @@ fn main() {
 
 fn compute_rucksack_values(rucksacks: &str) -> u32 {
     rucksacks
-        .split_terminator("\n")
+        .lines()
         .map(parse_compartments)
         .map(|(l, r)| find_common_items(l, r))
         .map(|is| is.into_iter().map(get_item_value).sum::<u32>())
@@ -20,7 +20,7 @@ fn compute_rucksack_values(rucksacks: &str) -> u32 {
 
 fn compute_identifier_values(rucksacks: &str) -> u32 {
     rucksacks
-        .split_terminator("\n")
+        .lines()
         .map(to_hash_set)
         .tuples()
         .map(|(l, c, r)| find_common_items(l, find_common_items(c, r)))

@@ -13,10 +13,7 @@ fn compute_calories_of_elves(input: &str, n: usize) -> u32 {
 }
 
 fn compute_calories_of_elf(input: &str) -> u32 {
-    input
-        .split_terminator("\n")
-        .map(|l| l.parse::<u32>().unwrap())
-        .sum()
+    input.lines().map(|l| l.parse::<u32>().unwrap()).sum()
 }
 
 #[test]
