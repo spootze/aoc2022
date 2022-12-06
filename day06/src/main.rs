@@ -22,7 +22,7 @@ fn find_start(buffer: &str, window_size: usize) -> usize {
 // as per https://stackoverflow.com/a/46767732
 fn is_unique(vals: &[u8]) -> bool {
     let mut uniq = HashSet::new();
-    vals.into_iter().all(move |x| uniq.insert(x))
+    vals.iter().all(move |x| uniq.insert(x))
 }
 
 #[test]
